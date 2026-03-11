@@ -28,4 +28,4 @@ This project aims to identify key factors that lead to customer attrition and bu
 
 ---
 ### Let's Connect!
-[Nosheen Khan on LinkedIn](www.linkedin.com/in/khannosheen)
+[View my LinkedIn Profile](https://www.linkedin.com/in/nosheen-khan)
