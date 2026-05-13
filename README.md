@@ -44,7 +44,7 @@ To bridge the gap between model predictions and business strategy, I developed a
 </p>
 
 <p align="center">
-  <img src=",/images/customer_deep_dive.png" width="850" alt="Risk Deep Dive">
+  <img src="./images/customer_deep_dive.png" width="850" alt="Risk Deep Dive">
   <br>
   <em>Page 2: Customer Risk & Service Deep Dive</em>
 </p>
