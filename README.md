@@ -48,6 +48,7 @@ To bridge the gap between model predictions and business strategy, I developed a
   <br>
   <em>Page 2: Customer Risk & Service Deep Dive</em>
 </p>
+
 ---
 ### Let's Connect!
 [Nosheen Khan on LinkedIn](https://www.linkedin.com/in/khannosheen) | [Nosheen Khan on Kaggle](https://www.kaggle.com/nosheenkhan)
