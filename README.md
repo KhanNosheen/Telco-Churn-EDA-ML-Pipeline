@@ -50,5 +50,10 @@ To bridge the gap between model predictions and business strategy, I developed a
 </p>
 
 ---
+### 📊 Explore the Data Model
+The full Power BI project file is available in this repository. 
+[Click here to download the .pbix file](./Dashboard/Telco_Churn_Analysis.pbix)
+
+---
 ### Let's Connect!
 [Nosheen Khan on LinkedIn](https://www.linkedin.com/in/khannosheen) | [Nosheen Khan on Kaggle](https://www.kaggle.com/nosheenkhan)
