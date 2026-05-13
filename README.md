@@ -38,13 +38,13 @@ To bridge the gap between model predictions and business strategy, I developed a
 
 ### **Dashboard Preview:**
 <p align="center">
-  <img src="churn_executive_summary.png" width="850" alt="Executive Overview">
+  <img src="./images/churn_executive_summary.png" width="850" alt="Executive Overview">
   <br>
   <em>Page 1: Executive Churn & Revenue Overview</em>
 </p>
 
 <p align="center">
-  <img src="customer_deep_dive.png" width="850" alt="Risk Deep Dive">
+  <img src=",/images/customer_deep_dive.png" width="850" alt="Risk Deep Dive">
   <br>
   <em>Page 2: Customer Risk & Service Deep Dive</em>
 </p>
