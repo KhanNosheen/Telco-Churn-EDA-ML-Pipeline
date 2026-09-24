@@ -13,7 +13,7 @@ This project aims to identify key factors that lead to customer attrition and bu
   <br>
   <i><b>Figure 1:</b> Confusion Matrix showing how accurately the model identifies churners.</i>
 </p>
-
+<b>Telc Churn Customer Prediction App </b>https://telco-churn-eda-ml-pipeline-z89q2unvtnpdwnrdl4e9eb.streamlit.app/
 ---
 
 ## 🛠️ Tools & Technologies
