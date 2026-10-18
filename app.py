@@ -123,7 +123,7 @@ with col1:
     # Split the 19 input features into two equal columns to eliminate scrolling
     features_dict = input_df.iloc[0].to_dict()
     items = list(features_dict.items())
-    mid_point = len(items) // 2
+    mid_point = (len(items) + 1 ) // 2
     
     p_col1, p_col2 = st.columns(2)
     
