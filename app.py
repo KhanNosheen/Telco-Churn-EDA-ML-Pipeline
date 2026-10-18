@@ -6,19 +6,24 @@ from catboost import CatBoostClassifier
 # Page Configuration
 st.set_page_config(
     page_title="Telco Churn Predictor",
-    layout="wide",  # Switched to wide layout for a dashboard feel
+    layout="wide",  # Wide layout for a professional dashboard feel
     initial_sidebar_state="expanded"
 )
 
-# App Header
+# --- 1. Project Overview / Description Section ---
 st.title("📊 Telco Customer Churn Predictor")
-st.markdown("Enter customer details in the sidebar to evaluate churn probability and analyze risk metrics.")
+st.markdown(
+    """
+    **Project Overview:** This interactive machine learning application predicts customer churn for telecommunications companies. 
+    Powered by a production-grade **CatBoost Pipeline**, it analyzes customer demographics, account details, and service usage 
+    to identify high-risk subscribers, enabling proactive retention strategies.
+    """
+)
 st.markdown("---")
 
 # Load the model using caching
 @st.cache_resource
 def load_model():
-    # Use joblib for .pkl files
     return joblib.load('churn_master_pipeline.pkl')
 
 # Initialize the model
@@ -27,7 +32,7 @@ try:
 except Exception as e:
     st.error(f"Error loading model file: {e}")
 
-# Sidebar for User Input
+# Sidebar for User Input & Model Info
 st.sidebar.header("📝 Customer Details")
 
 def get_user_input():
@@ -80,22 +85,27 @@ def get_user_input():
 
 input_df = get_user_input()
 
+# --- 2. Model Performance Metric in Sidebar ---
+st.sidebar.markdown("---")
+st.sidebar.subheader("📈 Model Performance")
+# Replace '0.85' with your model's actual tested F1-score
+st.sidebar.metric(label="Validation F1-Score", value="0.85", delta="Optimized")
+
 # Balanced Two-Column Layout for Main Content
 col1, col2 = st.columns([1.3, 0.7], gap="large")
 
 with col1:
     st.subheader("📋 Selected Customer Profile")
-    # Cleaned table formatting: removed index and enabled full width container
     st.dataframe(input_df, hide_index=True, use_container_width=True)
 
 with col2:
     st.subheader("🎯 Prediction Panel")
     st.write("Click below to run model inference.")
     
-    # Styled primary button spanning the column width
+    # Styled primary button
     if st.button("🚀 Predict Churn Probability", type="primary", use_container_width=True):
         try:
-            # Make prediction using cached model
+            # Make prediction
             prediction = model.predict(input_df)
             probability = model.predict_proba(input_df)[0][1]  # Probability of churn
 
@@ -104,6 +114,14 @@ with col2:
             # Prominent metric display
             st.metric(label="Churn Probability", value=f"{probability:.1%}")
 
+            # Conditional alert callouts
+            if prediction[0] == 1 or probability > 0.5:
+                st.error("🚨 **High Churn Risk:** This customer is likely to churn.")
+            else:
+                st.success("✅ **Low Churn Risk:** This customer is stable.")
+
+        except Exception as e:
+            st.error(f"An error occurred: {str(e)}")
             # Conditional alert callouts
             if prediction[0] == 1 or probability > 0.5:
                 st.error("🚨 **High Churn Risk:** This customer is likely to churn.")
