@@ -91,7 +91,7 @@ def get_user_input():
 
     # Create the DataFrame with ALL columns in the exact order required
     data = {
-        'gender': gender,
+        'Gender': gender,
         'SeniorCitizen': senior_citizen,
         'Partner': partner,
         'Dependents': dependents,
@@ -114,12 +114,6 @@ def get_user_input():
     return pd.DataFrame(data, index=[0])
 
 input_df = get_user_input()
-
-# --- 2. Model Performance Metric in Sidebar ---
-st.sidebar.markdown("---")
-st.sidebar.subheader("📈 Model Performance")
-# Replace '0.85' with your model's actual tested F1-score
-st.sidebar.metric(label="Validation F1-Score", value="0.85", delta="Optimized")
 
 # Balanced Two-Column Layout for Main Content
 col1, col2 = st.columns([1.3, 0.7], gap="large")
