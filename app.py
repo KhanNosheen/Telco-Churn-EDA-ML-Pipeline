@@ -91,7 +91,7 @@ def get_user_input():
 
     # Create the DataFrame with ALL columns in the exact order required
     data = {
-        'Gender': gender,
+        'gender': gender,
         'SeniorCitizen': senior_citizen,
         'Partner': partner,
         'Dependents': dependents,
