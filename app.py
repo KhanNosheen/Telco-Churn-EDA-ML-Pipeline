@@ -103,7 +103,7 @@ with col2:
     st.write("Click below to run model inference.")
     
     # Styled primary button
-    if st.button("🚀 Predict Churn Probability", type="primary", use_container_width=True):
+    if st.button("🚀 Predict Churn Probability", use_container_width=True):
         try:
             # Make prediction
             prediction = model.predict(input_df)
