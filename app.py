@@ -3,6 +3,23 @@ import pandas as pd
 import joblib
 from catboost import CatBoostClassifier         
 
+# Custom CSS to style buttons nicely
+st.markdown("""
+    <style>
+    /* Change primary button background color */
+    div.stButton > button {
+        background-color: #0066cc; /* Professional Blue */
+        color: white;
+        border-radius: 6px;
+        border: none;
+    }
+    div.stButton > button:hover {
+        background-color: #0052a3; /* Darker blue on hover */
+        color: white;
+    }
+    </style>
+""", unsafe_allow_html=True)
+
 # Page Configuration
 st.set_page_config(
     page_title="Telco Churn Predictor",
