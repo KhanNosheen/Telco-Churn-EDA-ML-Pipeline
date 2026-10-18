@@ -6,28 +6,33 @@ from catboost import CatBoostClassifier
 # Page Configuration
 st.set_page_config(
     page_title="Telco Churn Predictor",
-    layout="centered",
+    layout="wide",  # Switched to wide layout for a dashboard feel
     initial_sidebar_state="expanded"
 )
-st.title("Telco Churn Predictor")
-st.write("Enter Customer Detail below to Predict the Probability of Churn")
+
+# App Header
+st.title("📊 Telco Customer Churn Predictor")
+st.markdown("Enter customer details in the sidebar to evaluate churn probability and analyze risk metrics.")
+st.markdown("---")
 
 # Load the model using caching
 @st.cache_resource
 def load_model():
-  # Use joblib for .pkl files
-  return joblib.load('churn_master_pipeline.pkl')
-  
+    # Use joblib for .pkl files
+    return joblib.load('churn_master_pipeline.pkl')
 
 # Initialize the model
-model = load_model()
+try:
+    model = load_model()
+except Exception as e:
+    st.error(f"Error loading model file: {e}")
 
 # Sidebar for User Input
-st.sidebar.header("Customer Details")
+st.sidebar.header("📝 Customer Details")
 
 def get_user_input():
     # Categorical Inputs
-    internet_service = st.sidebar.selectbox("Internet Service", ["DSL","Fiber Optic", "No"])
+    internet_service = st.sidebar.selectbox("Internet Service", ["DSL", "Fiber Optic", "No"])
     gender = st.sidebar.selectbox("Gender", ["Male", "Female"])
     senior_citizen = st.sidebar.selectbox("Senior Citizen", ["Yes", "No"])
     partner = st.sidebar.selectbox("Partner", ["Yes", "No"])
@@ -46,7 +51,7 @@ def get_user_input():
     contract = st.sidebar.selectbox("Contract", ["Month-to-month", "One year", "Two year"])
     paperless_billing = st.sidebar.selectbox("Paperless Billing", ["Yes", "No"])
     payment_method = st.sidebar.selectbox("Payment Method", ["Electronic check", "Mailed check", "Bank transfer (automatic)", "Credit card (automatic)"])
-    monthly_charges = st.sidebar.number_input("Monthly Charges", 0.0, 200.0, 70.0)
+    monthly_charges = st.sidebar.number_input("Monthly Charges ($)", 0.0, 200.0, 70.0)
     total_charges = st.sidebar.number_input("Total Charges ($)", 0.0, 10000.0, 800.0)
 
     # Create the DataFrame with ALL columns in the exact order required
@@ -72,32 +77,39 @@ def get_user_input():
         'TotalCharges': total_charges
     }
     return pd.DataFrame(data, index=[0])
+
 input_df = get_user_input()
 
-# Display the selected Inputs back to the user
-st.subheader("Selected Customer Profile")
-st.dataframe(input_df)
+# Balanced Two-Column Layout for Main Content
+col1, col2 = st.columns([1.3, 0.7], gap="large")
 
-# Prediction Logic
-st.subheader("Prediction Result")
+with col1:
+    st.subheader("📋 Selected Customer Profile")
+    # Cleaned table formatting: removed index and enabled full width container
+    st.dataframe(input_df, hide_index=True, use_container_width=True)
 
-if st.button("Prediction Churn Probability"):
-    try:
-        #Load the Pipeline Model
-        model = joblib.load("churn_master_pipeline.pkl")
-
-        # Make prediction
-        prediction = model.predict(input_df)
-        probability = model.predict_proba(input_df)[0][1]  # Probability of churn
-
-
+with col2:
+    st.subheader("🎯 Prediction Panel")
+    st.write("Click below to run model inference.")
     
-        # Display the prediction result
-        if prediction[0] == 1:
-            st.error(f"🚨 The Customer is likely to churn. (Risk: {probability: .1%})")
-        else:
-            st.success(f"✅ The Customer is unlikely to churn. (Risk: {probability: .1%})")
+    # Styled primary button spanning the column width
+    if st.button("🚀 Predict Churn Probability", type="primary", use_container_width=True):
+        try:
+            # Make prediction using cached model
+            prediction = model.predict(input_df)
+            probability = model.predict_proba(input_df)[0][1]  # Probability of churn
 
-    except Exception as e:
-        st.error(f"An error occurred: {str(e)}")
+            st.markdown("### Analysis Result")
+            
+            # Prominent metric display
+            st.metric(label="Churn Probability", value=f"{probability:.1%}")
+
+            # Conditional alert callouts
+            if prediction[0] == 1 or probability > 0.5:
+                st.error("🚨 **High Churn Risk:** This customer is likely to churn.")
+            else:
+                st.success("✅ **Low Churn Risk:** This customer is stable.")
+
+        except Exception as e:
+            st.error(f"An error occurred: {str(e)}")
         
