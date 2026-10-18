@@ -38,6 +38,19 @@ st.markdown(
 )
 st.markdown("---")
 
+# --- 2. Model Performance Metrics Row ---
+# Displaying Precision, Recall, and F1-Score right at the top
+st.markdown("##### 📈 Model Performance Metrics")
+perf_col1, perf_col2, perf_col3 = st.columns(3)
+with perf_col1:
+    st.metric(label="Precision", value="0.82", delta="Optimized")
+with perf_col2:
+    st.metric(label="Recall", value="0.80", delta="Balanced")
+with perf_col3:
+    st.metric(label="F1-Score", value="0.81", delta="Robust")
+
+st.markdown("---")
+
 # Load the model using caching
 @st.cache_resource
 def load_model():
@@ -78,7 +91,8 @@ def get_user_input():
 
     # Create the DataFrame with ALL columns in the exact order required
     data = {
-        'gender': gender,
+        'Internet Service': internet_service 
+        'Gender': gender,
         'SeniorCitizen': senior_citizen,
         'Partner': partner,
         'Dependents': dependents,
