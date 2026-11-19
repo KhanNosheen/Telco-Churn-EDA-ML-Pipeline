@@ -13,7 +13,7 @@ This project aims to identify key factors that lead to customer attrition and bu
   <br>
   <i><b>Figure 1:</b> Confusion Matrix showing how accurately the model identifies churners.</i>
 </p>
-**Live App:** [Telco Churn Customer Prediction App](https://telco-churn-eda-ml-pipeline-z89q2unvtnpdwnrdl4e9eb.streamlit.app/)https://telco-churn-eda-ml-pipeline-z89q2unvtnpdwnrdl4e9eb.streamlit.app/
+**Live App:** [Telco Churn Customer Prediction App](https://telco-churn-eda-ml-pipeline-z89q2unvtnpdwnrdl4e9eb.streamlit.app/)
 
 ### Model Evaluation & Inference Note
 * **Overall Model Generalization (Full Test Set):** All primary evaluation metrics—including **ROC-AUC**, **precision**, **recall**, **F1-score**, and **accuracy**—are computed across the held-out test set (`y_test`). These metrics measure how reliably the CatBoost pipeline ranks and classifies churn risk across unseen customer records.
