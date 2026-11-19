@@ -13,7 +13,12 @@ This project aims to identify key factors that lead to customer attrition and bu
   <br>
   <i><b>Figure 1:</b> Confusion Matrix showing how accurately the model identifies churners.</i>
 </p>
-<b>Telc Churn Customer Prediction App </b>https://telco-churn-eda-ml-pipeline-z89q2unvtnpdwnrdl4e9eb.streamlit.app/
+**Live App:** [Telco Churn Customer Prediction App](https://telco-churn-eda-ml-pipeline-z89q2unvtnpdwnrdl4e9eb.streamlit.app/)https://telco-churn-eda-ml-pipeline-z89q2unvtnpdwnrdl4e9eb.streamlit.app/
+
+### Model Evaluation & Inference Note
+* **Overall Model Generalization (Full Test Set):** All primary evaluation metrics—including **ROC-AUC**, **precision**, **recall**, **F1-score**, and **accuracy**—are computed across the held-out test set (`y_test`). These metrics measure how reliably the CatBoost pipeline ranks and classifies churn risk across unseen customer records.
+* **Single-Record Runtime Inference:** The sample runtime check in the Streamlit app (**Prediction: Churn | Churn Probability: 84.71%**) demonstrates end-to-end pipeline inference on an individual high-risk customer profile. Because single-input probabilities vary by customer attributes (such as tenure, contract type, and monthly charges), runtime outputs illustrate real-time behavior rather than aggregate model performance.
+* **Next Steps for Iteration:** Further refinement can focus on decision-threshold tuning aligned with customer retention costs and probability calibration.
 ---
 
 ## 🛠️ Tools & Technologies
