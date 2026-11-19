@@ -23,7 +23,7 @@ This project aims to identify key factors that lead to customer attrition and bu
 
 ## 🛠️ Tools & Technologies
 * **Language:** Python
-* **Libraries:** Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn
+* **Libraries:** Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn, CatBoost
 * **Platform:** Kaggle & GitHub
 
 ## 🚀 How to Use
